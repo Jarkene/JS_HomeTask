@@ -1,0 +1,35 @@
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+.button:hover {
+    color: gold;
+    background: firebrick;
+}
+
+#title {
+    font-family: Comic Sans MS, sans-serif;
+    color: rgba(218, 214, 0, 0.897);
+}
+
+.new-text {
+    color: blue;
+    font-size: 1.5em;
+}
+
+.linear-gradient {
+    background: linear-gradient(60deg, #fff, #d4e296);
+}
+
+.radial-gradient {
+    background: radial-gradient(circle farthest-corner at 30px 20px, #fff, rgba(152, 194, 214, 0.671));
+}
+
+#promo-banner-title {
+    color: lawngreen;
+    font-family: Comic Sans MS, sans-serif;
+}
