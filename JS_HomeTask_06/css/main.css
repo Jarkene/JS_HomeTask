@@ -1,0 +1,27 @@
+@font-face {
+    font-family: "Clock";
+    src: url(../fonts/font.ttf);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+p {
+    text-align: center;
+    padding-top: 30vh;
+}
+
+#clock {
+    display: inline-block;
+    width: 42vw;
+    box-shadow: 0.08em 0.08em 0.1em black;
+    background-color: #ecb7b7;
+    padding: 0.2em;
+    border: 0.02em dashed #ad0404;
+    border-radius: 0.08em;
+    font-family: Clock, sans-serif;
+    font-size: 24vh;
+    color: #ad0404;
+}
