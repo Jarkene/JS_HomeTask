@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.info {
+    text-align: center;
+    font-size: 20px;
+}
+
+.menu {
+    background-color: white;
+    position: absolute;
+    display: none;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.menu > li {
+    font-size: 18px;
+    padding: 10px;
+    list-style: none;
+    border-bottom: 0.1vh solid black;
+}
+
+.menu > li:hover {
+    background-color: grey;
+    cursor: pointer;
+}
+
+.menu :last-child {
+    border: none;
+}
+
+h1 {
+    background-color: blue;
+    margin-bottom: 5px;
+}
+
+h1:hover {
+    background-color: #5656ff;
+}
+
+h1:nth-child(2n) {
+    background-color: blueviolet;
+}
+
+h1:nth-child(2n):hover {
+    background-color: #af68f1;
+}
