@@ -1,12 +1,11 @@
 var menu = document.querySelector('.menu');
 
-menu.addEventListener('mouseup', function(event) {
-    if (event.target.children.length) {
-        var childItem = event.target.firstElementChild;
-        if (getComputedStyle(childItem).display == 'none') {
-            childItem.style.display = 'block';
-        } else {
-            childItem.style.display = 'none';
-        }
-    }
+menu.addEventListener('click', function(event) {
+    var dropdownList = event.target.parentNode.children[1];
+    dropdownList.classList.toggle('visible');
+})
+
+menu.addEventListener('focusout', function(event) {
+    var dropdownList = event.target.parentNode.children[1];
+    dropdownList.classList.remove('visible');
 })
