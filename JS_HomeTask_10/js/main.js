@@ -71,14 +71,14 @@ class Playground {
     }
 
     createStart(row, col) {
-        var start = table.getCell(row, col);
+        var start = this.table.getCell(row, col);
         start.DOM.classList.add('start');
 
         return start;
     }
 
     createFinish(row, col) {
-        var finish = table.getCell(row, col);
+        var finish = this.table.getCell(row, col);
         finish.DOM.classList.add('finish');
 
         return finish;
@@ -91,36 +91,37 @@ class Player {
         this.playground = playground;
 
         this.eventListeners = {
-            move: function (event) {
+            move: () => {
                 if (event.code == 'ArrowUp') {
-                    player.move.up();
+                    this.move.up();
                 }
 
                 if (event.code == 'ArrowLeft') {
-                    player.move.left();
+                    this.move.left();
                 }
 
-
                 if (event.code == 'ArrowDown') {
-                    player.move.down();
+                    this.move.down();
                 }
 
                 if (event.code == 'ArrowRight') {
-                    player.move.right();
+                    this.move.right();
                 }
             },
 
             win: () => {
                 if (this.isWin()) {
-                    System.winMsg(player.playground);
+                    System.winMsg(this.playground);
                     System.removeAllEventListeners(this);
+                    this.curCell.DOM.classList.remove('player');
                 }
             },
 
             lose: () => {
                 if (this.isLose()) {
-                    System.loseMsg(player.playground);
+                    System.loseMsg(this.playground);
                     System.removeAllEventListeners(this);
+                    this.curCell.DOM.classList.remove('player');
                 }
             }
 
@@ -137,30 +138,34 @@ class Player {
             left: () => {
                 var nextLeft = this.playground.table.getCell(this.curCell.x, this.curCell.y - 1);
                 if (nextLeft && !nextLeft.DOM.classList.contains('obstacle')) {
-                    player.setCellPosition(nextLeft, 'player-left');
+                    this.setCellPosition(nextLeft, 'player-left');
                 }
             },
 
             down: () => {
                 var nextDown = this.playground.table.getCell(this.curCell.x + 1, this.curCell.y);
                 if (nextDown && !nextDown.DOM.classList.contains('obstacle')) {
-                    player.setCellPosition(nextDown, 'player-down');
+                    this.setCellPosition(nextDown, 'player-down');
                 }
             },
 
             right: () => {
                 var nextRight = this.playground.table.getCell(this.curCell.x, this.curCell.y + 1);
                 if (nextRight && !nextRight.DOM.classList.contains('obstacle')) {
-                    player.setCellPosition(nextRight, 'player-right');
+                    this.setCellPosition(nextRight, 'player-right');
                 }
             }
         }
     }
 
     setCellPosition(cell, className) {
-        if (this.curCell) this.curCell.DOM.innerHTML = '';
+        if (this.curCell) {
+             this.curCell.DOM.innerHTML = '';
+             this.curCell.DOM.classList.remove('player');
+        }
         this.curCell = cell;
-        this.curCell.DOM.innerHTML = `<img src="./img/player.png" class="player ${className}">`;
+        this.curCell.DOM.innerHTML = `<img src="./img/player.png" class="player-img ${className}">`;
+        this.curCell.DOM.classList.add('player');
     }
 
     isLose() {
@@ -198,7 +203,7 @@ class System {
         winMsg.classList.add('win');
 
         var body = document.querySelector('body');
-        body.appendChild(winMsg);
+        document.body.appendChild(winMsg);
     }
 
     static loseMsg(playground) {
@@ -206,161 +211,129 @@ class System {
 
         var winMsg = document.createElement('div');
         winMsg.innerHTML = 'Вы проиграли!';
-        winMsg.classList.add('win');
+        winMsg.classList.add('lose');
 
-        var body = document.querySelector('body');
-        body.appendChild(winMsg);
+        document.body.appendChild(winMsg);
+    }
+
+    static initDefault() {
+        var obstacles = {
+
+            horizontal: [
+                [1, 1, 8],
+                [2, 12, 15],
+                [3, 4, 5], [3, 7, 8],
+                [4, 10, 15], [4, 19, 20],
+                [5, 1, 2], [5, 4, 10],
+                [6, 2, 4], [6, 6, 6], [6, 12, 17],
+                [8, 2, 2], [8, 10, 13],
+                [9, 1, 4], [9, 17, 18],
+                [10, 8, 11], [10, 13, 15],
+                [11, 2, 2], [11, 4, 6],
+                [12, 2, 4], [12, 6, 6], [12, 10, 15], [12, 17, 18],
+                [14, 2, 4], [14, 6, 8], [14, 10, 13],
+            ],
+            vertical: [
+                [2, 3, 6], [2, 11, 12],
+                [3, 12, 14],
+                [4, 3, 6], [4, 7, 9],
+                [6, 6, 11],
+                [7, 14, 15],
+                [8, 5, 8], [8, 12, 14],
+                [10, 2, 6], [10, 8, 10], [10, 12, 14],
+                [12, 2, 4], [12, 6, 8],
+                [15, 4, 10], [15, 12, 15],
+                [17, 1, 2], [17, 4, 10], [17, 12, 15],
+                [19, 2, 6], [19, 8, 10], [19, 12, 12], [19, 14, 15]
+            ]
+        }
+        
+        var table = new Table(15, 20);
+        var playground = new Playground(table);
+        var start = playground.createStart(15, 16);
+        var finish = playground.createFinish(4, 1);
+        var player = new Player(playground, start);
+        console.log(table.getCell(9, 8).DOM.classList)
+        
+        playground.drawObstacles(table.getCellsFromHorizontalVectors(...obstacles.horizontal));
+        playground.drawObstacles(table.getCellsFromVerticalVectors(...obstacles.vertical));
+        
+        var enemies = [
+            new Enemy(player, 10, 1),
+            new Enemy(player, 6, 7),
+            new Enemy(player, 5, 20),
+            new Enemy(player, 4, 5),
+            new Enemy(player, 3, 20),
+            new Enemy(player, 15, 9),
+        ]
+        
+        System.addEventListeners(player);
     }
 }
-
-var obstacles = {
-
-    horizontal: [
-        [1, 1, 8],
-        [2, 12, 15],
-        [3, 4, 5], [3, 7, 8],
-        [4, 10, 15], [4, 19, 20],
-        [5, 1, 2], [5, 4, 10],
-        [6, 2, 4], [6, 6, 6], [6, 12, 17],
-        [8, 2, 2], [8, 10, 13],
-        [9, 1, 4], [9, 17, 18],
-        [10, 8, 11], [10, 13, 15],
-        [11, 2, 2], [11, 4, 6],
-        [12, 2, 4], [12, 6, 6], [12, 10, 15], [12, 17, 18],
-        [14, 2, 4], [14, 6, 8], [14, 10, 13],
-    ],
-    vertical: [
-        [2, 3, 6], [2, 11, 12],
-        [3, 12, 14],
-        [4, 3, 6], [4, 7, 9],
-        [6, 6, 11],
-        [7, 14, 15],
-        [8, 5, 8], [8, 12, 14],
-        [10, 2, 6], [10, 8, 10], [10, 12, 14],
-        [12, 2, 4], [12, 6, 8],
-        [15, 4, 10], [15, 12, 15],
-        [17, 1, 2], [17, 4, 10], [17, 12, 15],
-        [19, 2, 6], [19, 8, 10], [19, 12, 12], [19, 14, 15]
-    ]
-
-}
-
-var table = new Table(15, 20);
-var playground = new Playground(table);
-var start = playground.createStart(15, 16);
-var finish = playground.createFinish(4, 1);
-var player = new Player(playground, start);
-
-playground.drawObstacles(table.getCellsFromHorizontalVectors(...obstacles.horizontal));
-playground.drawObstacles(table.getCellsFromVerticalVectors(...obstacles.vertical));
-
-System.addEventListeners(player);
 
 class Enemy {
-    constructor(playground, row, col) {
-        this.playground = playground;
-        this.setPosition(row, col);
-        this.move();
+    constructor(player, row, col) {
+        this.player = player;
+        this.setPosition(this.player.playground.table.getCell(row, col));
+
+        this.enemyLogic();
     }
 
-    setPosition(row, col) {
+    getDirections() {
+        return {
+            up: this.player.playground.table.getCell(this.curCell.x - 1, this.curCell.y),
+            left: this.player.playground.table.getCell(this.curCell.x, this.curCell.y - 1),
+            down: this.player.playground.table.getCell(this.curCell.x + 1, this.curCell.y),
+            right: this.player.playground.table.getCell(this.curCell.x, this.curCell.y + 1),
+        }
+    }
+
+    setPosition(cell) {
         if (this.curCell) {
             this.curCell.DOM.innerHTML = '';
             this.curCell.DOM.classList.remove('enemy');
         }
-        this.curCell = this.playground.table.getCell(row, col);
+        this.curCell = cell;
         this.curCell.DOM.classList.add('enemy');
         this.curCell.DOM.innerHTML = '<img src="./img/enemy.png" class="enemy">';
     }
 
-    move() {
-        var directions = {
-            up: this.playground.table.getCell(this.curCell.x - 1, this.curCell.y),
-            left: this.playground.table.getCell(this.curCell.x, this.curCell.y - 1),
-            down: this.playground.table.getCell(this.curCell.x + 1, this.curCell.y),
-            right: this.playground.table.getCell(this.curCell.x, this.curCell.y + 1),
-        }
-
+    enemyLogic() {
         function getRandomInt(min, max) {
             return Math.round(Math.random() * (max - min)) + min;
         }
+
+        var directions = this.getDirections();
 
         function randomizeDirection() {
             return Object.keys(directions)[getRandomInt(0, 3)];
         }
 
-        var randDirection = randomizeDirection();
+        var randDirection = randomizeDirection.bind(this)();
         var curDirection = directions[randDirection];
 
         if (curDirection && !curDirection.DOM.classList.contains('obstacle')) {
-            console.log(curDirection);
+            this.timer = setInterval(() => {
+                this.setPosition(curDirection);
+
+                directions = this.getDirections();
+                curDirection = directions[randDirection];
+
+                if (!curDirection || curDirection.DOM.classList.contains('obstacle')) {
+                    clearInterval(this.timer);
+                    this.enemyLogic();
+                };
+
+                if (this.curCell.DOM.classList.contains('player')) {
+                    this.player.curCell.DOM.classList.remove('player');
+                    System.loseMsg(this.player.playground);
+                    System.removeAllEventListeners(this.player);
+                }
+            }, 150);
+        } else {
+            this.enemyLogic();
         }
     }
 }
 
-var enemies = [
-    new Enemy(playground, 10, 1)
-]
-
-// var startEnemiesCells = [table.getCell(15, 1), table.getCell(13, 4), table.getCell(4, 8), table.getCell(3, 13), table.getCell(5, 20), table.getCell(7, 13)];
-
-// startEnemiesCells.forEach(function (curEnemyCell) {
-//     curEnemyCell.DOM.innerHTML = '<img src="./img/enemy.png" class="enemy">';
-
-//     function enemyLogic() {
-
-//         function getDirection() {
-//             return {
-//                 up: table.getCell(curEnemyCell.x - 1, curEnemyCell.y),
-//                 left: table.getCell(curEnemyCell.x, curEnemyCell.y - 1),
-//                 down: table.getCell(curEnemyCell.x + 1, curEnemyCell.y),
-//                 right: table.getCell(curEnemyCell.x, curEnemyCell.y + 1),
-//             }
-//         }
-
-//         function getRandomInt(min, max) {
-//             return Math.round(Math.random() * (max - min)) + min;
-//         }
-
-        // var randDirection = randomizeDirection();
-        // var curDirection = getDirection()[randDirection];
-
-//         function move() {
-
-//             curDirection = getDirection()[randDirection];
-
-//             if (curDirection && !curDirection.DOM.classList.contains('obstacle')) {
-//                 curEnemyCell.DOM.classList.remove('enemy');
-//                 curEnemyCell.DOM.innerHTML = '';
-//                 curEnemyCell = curDirection;
-//                 curEnemyCell.DOM.innerHTML = '<img src="./img/enemy.png" class="enemy">';
-//                 curDirection = getDirection()[randDirection];
-//                 curEnemyCell.DOM.classList.add('enemy');
-//                 var timer = setTimeout(move, 300);
-
-//                 if (curCell.DOM.classList.contains('enemy')) {
-//                     table.DOM.style.display = 'none';
-
-//                     var winMsg = document.createElement('div');
-//                     winMsg.innerHTML = 'Вы проиграли!';
-//                     winMsg.classList.add('win');
-
-//                     var body = document.querySelector('body');
-//                     body.appendChild(winMsg);
-
-//                     clearTimeout(timer);
-//                 }
-
-//             } else {
-//                 randDirection = randomizeDirection();
-//                 move();
-//             }
-
-//         }
-
-//         move();
-
-//     }
-
-//     enemyLogic();
-// })
+System.initDefault();

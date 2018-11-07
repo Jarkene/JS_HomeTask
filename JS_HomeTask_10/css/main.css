@@ -42,11 +42,11 @@ td {
     background-size: 140% 190%;
 }
 
-.player {
+img.player-img {
     width: 20px;
 }
 
-.player-up {
+img.player-up {
     transform: rotate(-90deg);
 }
 
@@ -71,6 +71,15 @@ img.enemy {
     font-size: 80px;
     font-weight: bolder;
     color: chocolate;
+    text-align: center;
+    padding-top: 200px;
+}
+
+.lose {
+    font-family: Comic Sans MS, sans-serif;
+    font-size: 80px;
+    font-weight: bolder;
+    color: black;
     text-align: center;
     padding-top: 200px;
 }
