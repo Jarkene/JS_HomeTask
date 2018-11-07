@@ -1,0 +1,76 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+table {
+    border: 1px solid black;
+}
+
+table, td {
+    border-collapse: collapse;
+}
+
+table {
+    background-image: url('../img/ground.jpg');
+    background-size: 20% 25%;
+    margin: 20px auto;
+}
+
+td {
+    padding-top: 10px;
+    width: 45px;
+    height: 45px;
+    text-align: center;
+}
+
+.obstacle {
+    border-radius: 5px;
+    background-image: url('../img/obstacle.png');
+    background-size: 300% 300%;
+}
+
+.finish {
+    border-radius: 10px;
+    background-image: url('../img/finish.jpg');
+    background-size: 200% 100%;
+}
+
+.start {
+    background-image: url('../img/start.png');
+    background-size: 140% 190%;
+}
+
+.player {
+    width: 20px;
+}
+
+.player-up {
+    transform: rotate(-90deg);
+}
+
+.player-left {
+    transform: rotate(-180deg);
+}
+
+.player-down {
+    transform: rotate(90deg);
+}
+
+.player-right {
+    transform: none;
+}
+
+img.enemy {
+    width: 30px;
+}
+
+.win {
+    font-family: Comic Sans MS, sans-serif;
+    font-size: 80px;
+    font-weight: bolder;
+    color: chocolate;
+    text-align: center;
+    padding-top: 200px;
+}
