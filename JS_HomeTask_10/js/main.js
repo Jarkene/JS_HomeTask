@@ -220,12 +220,12 @@ class System {
         var obstacles = {
 
             horizontal: [
-                [1, 1, 8],
+                [1, 1, 10],
                 [2, 12, 15],
                 [3, 4, 5], [3, 7, 8],
                 [4, 10, 15], [4, 19, 20],
                 [5, 1, 2], [5, 4, 10],
-                [6, 2, 4], [6, 6, 6], [6, 12, 17],
+                [6, 6, 6], [6, 12, 17],
                 [8, 2, 2], [8, 10, 13],
                 [9, 1, 4], [9, 17, 18],
                 [10, 8, 11], [10, 13, 15],
@@ -236,13 +236,13 @@ class System {
             vertical: [
                 [2, 3, 6], [2, 11, 12],
                 [3, 12, 14],
-                [4, 3, 6], [4, 7, 9],
-                [6, 6, 11],
+                [4, 3, 7],
+                [6, 6, 7], [6, 9, 11],
                 [7, 14, 15],
                 [8, 5, 8], [8, 12, 14],
-                [10, 2, 6], [10, 8, 10], [10, 12, 14],
-                [12, 2, 4], [12, 6, 8],
-                [15, 4, 10], [15, 12, 15],
+                [10, 1, 2], [10, 6, 10], [10, 12, 14],
+                [12, 1, 4], [12, 6, 8],
+                [15, 6, 10], [15, 12, 15],
                 [17, 1, 2], [17, 4, 10], [17, 12, 15],
                 [19, 2, 6], [19, 8, 10], [19, 12, 12], [19, 14, 15]
             ]
@@ -262,9 +262,11 @@ class System {
             new Enemy(player, 10, 1),
             new Enemy(player, 6, 7),
             new Enemy(player, 5, 20),
-            new Enemy(player, 4, 5),
+            new Enemy(player, 2, 1),
             new Enemy(player, 3, 20),
-            new Enemy(player, 15, 9),
+            new Enemy(player, 15, 8),
+            new Enemy(player, 7, 13),
+            new Enemy(player, 1, 13),
         ]
         
         System.addEventListeners(player);
@@ -329,7 +331,7 @@ class Enemy {
                     System.loseMsg(this.player.playground);
                     System.removeAllEventListeners(this.player);
                 }
-            }, 150);
+            }, 180);
         } else {
             this.enemyLogic();
         }
