@@ -1,4 +1,4 @@
-country, flag, code, population, 
+country, flag, code, population
 Belgium, ./img/belgium.png, 32, 11838158
 Russia, ./img/russia.png, 7, 146880432
 Japan, ./img/japan.png, 81, 126800000

@@ -5,7 +5,7 @@ xhr.open('GET', './data/countries.csv', true);
 xhr.onload = function (str) {
 	var countries = [];
 
-	var rows = this.responseText.split('\n');
+	var rows = this.responseText.split('\r\n');
 	var headers = rows[0].split(', ');
 	var data = rows.slice(1);
 
