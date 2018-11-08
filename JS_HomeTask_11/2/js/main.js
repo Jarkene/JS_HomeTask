@@ -24,7 +24,7 @@ xhr.onload = function (str) {
 
 	for (var i = 0; i < countries.length; ++i) {
 		table.children[i + 1].firstElementChild.innerHTML = countries[i].country;
-		table.children[i + 1].children[1].innerHTML = `<img src=${countries[i].flag} style="width: 240px; height: 150px;"/>`;
+		table.children[i + 1].children[1].innerHTML = `<img src=${countries[i].flag} style="width: 120px; height: 75px;"/>`;
 		table.children[i + 1].children[2].innerHTML =  countries[i].code;
 		table.children[i + 1].children[3].innerHTML = countries[i].population;
 	}
