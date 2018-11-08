@@ -7,7 +7,7 @@ window.addEventListener('scroll', function(event) {
         block.classList.add('fixed');
         block.classList.remove('not-fixed');
     }
-    if (window.scrollY <= 500) {
+    if (window.scrollY <= parseInt(offset)) {
         block.classList.remove('fixed');
         block.classList.add('not-fixed');
     }
