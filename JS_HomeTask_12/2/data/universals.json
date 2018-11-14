@@ -1,0 +1,56 @@
+[
+    {
+        "title": "Peugeot 508 стал универсалом",
+        "img": "./img/auto/peugeot-508.jpeg",
+        "date": {
+            "img": "./img/icons/date.png",
+            "value": "14.02.2018"
+        },
+        "views": {
+            "img": "./img/icons/views.png",
+            "value": "764"
+        },
+        "rating": {
+            "img": "./img/icons/rating.png",
+            "value": "65"
+        },
+        "shortText": "У предшественника была \"пятидверная\" модификация, модель нового поколения не стала исключением.",
+        "fullText": "./data/html/peugeot-508.html"
+    },
+    {
+        "title": "АВТОВАЗ представил универсалы Lada Vesta в Германии. Известна цена",
+        "img": "./img/auto/lada-vesta.jpg",
+        "date": {
+            "img": "./img/icons/date.png",
+            "value": "21.12.2017"
+        },
+        "views": {
+            "img": "./img/icons/views.png",
+            "value": "1679"
+        },
+        "rating": {
+            "img": "./img/icons/rating.png",
+            "value": "214"
+        },
+        "shortText": "«Пятидверки» Vesta SW и Vesta SW Cross были представлены на моторшоу в Эссене.",
+        "fullText": "./data/html/lada-vesta.html"
+    },
+    {
+        "title": "Новый универсал Peugeot 508 стартует в Европе с дорогой версии",
+        "img": "./img/auto/peugeot-508-2-0.jpeg",
+        "date": {
+            "img": "./img/icons/date.png",
+            "value": "10.11.2018"
+        },
+        "views": {
+            "img": "./img/icons/views.png",
+            "value": "1870"
+        },
+        "rating": {
+            "img": "./img/icons/rating.png",
+            "value": "212"
+        },
+        "shortText": "Новинка представлена в рамках Парижского автосалона, который сегодня, 2 октября 2018 года, открыл свои двери для представителей прессы.",
+        "fullText": "./data/html/peugeot-508-2.html"
+    }
+]

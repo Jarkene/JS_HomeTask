@@ -1,0 +1,10 @@
+[{
+    "title": "Автомобили",
+    "path": "./data/auto.json"
+}, {
+    "title": "Мотоциклы",
+    "path": "./data/moto.json"
+}, {
+    "title": "Велосипеды",
+    "path": "./data/velo.json"
+}]

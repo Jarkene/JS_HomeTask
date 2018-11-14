@@ -1,0 +1,13 @@
+[{
+    "title": "Седаны",
+    "img": "./img/auto/sedan-main.png",
+    "path": "data/sedans.json"
+}, {
+    "title": "Кроссоверы",
+    "img": "./img/auto/crossover-main.png",
+    "path": "data/crossovers.json"
+}, {
+    "title": "Универсалы",
+    "img": "./img/auto/universal-main.png",
+    "path": "data/universals.json"
+}]

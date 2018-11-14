@@ -1,0 +1,13 @@
+[{
+    "title": "Спортивные",
+    "img": "./img/velo/sport_velo.png",
+    "path": "data/sport_velo.json"
+}, {
+    "title": "Городские",
+    "img": "./img/velo/city_bikes.png",
+    "path": "data/city_bikes.json"
+}, {
+    "title": "Горные",
+    "img": "./img/velo/mountain_velo.png",
+    "path": "data/mountain_velo.json"
+}]

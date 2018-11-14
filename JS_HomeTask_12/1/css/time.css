@@ -1,0 +1,18 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#clock {
+    width: 60%;
+    margin: auto;
+    padding: 30px;
+    background-color: #ecb7b7;
+    border: 0.02em dashed #ad0404;
+    box-shadow: 10px 10px 20px black;
+    font-family: monospace;
+    border-radius: 0.08em;
+    font-size: 100px;
+    color: #ad0404;
+}

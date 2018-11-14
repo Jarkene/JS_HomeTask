@@ -1,0 +1,56 @@
+[
+    {
+        "title": "Kawasaki представил Sport Tourer Ninja H2 SX с наддувом",
+        "img": "./img/moto/Kawasaki-Ninja.jpg",
+        "date": {
+            "img": "./img/icons/date.png",
+            "value": "24.03.2018"
+        },
+        "views": {
+            "img": "./img/icons/views.png",
+            "value": "517"
+        },
+        "rating": {
+            "img": "./img/icons/rating.png",
+            "value": "24"
+        },
+        "shortText": "По заявлению производителя, 200-сильная новинка будет экономичнее спорт-туринга Kawasaki Z1000SX.",
+        "fullText": "./data/html/Kawasaki-Ninja.html"
+    },
+    {
+        "title": "BMW готовит электрический супербайк",
+        "img": "./img/moto/bmw-moto.jpg",
+        "date": {
+            "img": "./img/icons/date.png",
+            "value": "24.03.2017"
+        },
+        "views": {
+            "img": "./img/icons/views.png",
+            "value": "1517"
+        },
+        "rating": {
+            "img": "./img/icons/rating.png",
+            "value": "224"
+        },
+        "shortText": "BMW продолжает осваивать альтернативные источники питания двухколёсного транспорта.",
+        "fullText": "./data/html/bmw-moto.html"
+    },
+    {
+        "title": "Yamaha начинает продажи YZF-R3 в России",
+        "img": "./img/moto/yamaha-yzf-r3.jpg",
+        "date": {
+            "img": "./img/icons/date.png",
+            "value": "24.05.2018"
+        },
+        "views": {
+            "img": "./img/icons/views.png",
+            "value": "656"
+        },
+        "rating": {
+            "img": "./img/icons/rating.png",
+            "value": "86"
+        },
+        "shortText": "Компания «Yamaha Motor CIS» объявила о старте продаж нового спортбайка начального уровня YZF-R3 в российских дилерских салонах марки. Продажи стартуют в июле 2015 года.",
+        "fullText": "./data/html/yamaha-yzf-r3.html"
+    }
+]

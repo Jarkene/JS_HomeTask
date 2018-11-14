@@ -301,13 +301,13 @@ class Enemy {
     }
 
     enemyLogic() {
-        function getRandomInt(min, max) {
+        var getRandomInt = function(min, max) {
             return Math.round(Math.random() * (max - min)) + min;
         }
 
         var directions = this.getDirections();
 
-        function randomizeDirection() {
+        var randomizeDirection = function() {
             return Object.keys(directions)[getRandomInt(0, 3)];
         }
 

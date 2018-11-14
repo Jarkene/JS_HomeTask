@@ -1,0 +1,56 @@
+[
+    {
+        "title": "Stinger Defender 26 (2018)",
+        "img": "./img/velo/Stinger-Defender.jpg",
+        "date": {
+            "img": "./img/icons/date.png",
+            "value": "27.11.2018"
+        },
+        "views": {
+            "img": "./img/icons/views.png",
+            "value": "526"
+        },
+        "rating": {
+            "img": "./img/icons/rating.png",
+            "value": "52"
+        },
+        "shortText": "Горный велосипед для начинающих с навесным оборудованием Shimano, 6 скоростей.",
+        "fullText": "./data/html/Stinger-Defender.html"
+    },
+    {
+        "title": "Forward Flash 1.0 (2018)",
+        "img": "./img/velo/Forward-Flash.jpg",
+        "date": {
+            "img": "./img/icons/date.png",
+            "value": "05.10.2018"
+        },
+        "views": {
+            "img": "./img/icons/views.png",
+            "value": "876"
+        },
+        "rating": {
+            "img": "./img/icons/rating.png",
+            "value": "92"
+        },
+        "shortText": "Горный велосипед для начинающих с навесным оборудованием Shimano, 6 скоростей.",
+        "fullText": "./data/html/Forward-Flash.html"
+    },
+    {
+        "title": "Stinger Caiman 26 (2018)",
+        "img": "./img/velo/Stinger-Caiman.jpg",
+        "date": {
+            "img": "./img/icons/date.png",
+            "value": "04.11.2018"
+        },
+        "views": {
+            "img": "./img/icons/views.png",
+            "value": "776"
+        },
+        "rating": {
+            "img": "./img/icons/rating.png",
+            "value": "102"
+        },
+        "shortText": "Горный велосипед для начинающих с навесным оборудованием Shimano, 18 скоростей.",
+        "fullText": "./data/html/Stinger-Caiman.html"
+    }
+]

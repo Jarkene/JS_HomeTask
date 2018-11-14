@@ -1,0 +1,56 @@
+[
+    {
+        "title": "Кроссовер Chevrolet Captiva нового поколения оказался близнецом «китайца»",
+        "img": "./img/auto/chevrolet-captiva.jpg",
+        "date": {
+            "img": "./img/icons/date.png",
+            "value": "09.11.2018"
+        },
+        "views": {
+            "img": "./img/icons/views.png",
+            "value": "768"
+        },
+        "rating": {
+            "img": "./img/icons/rating.png",
+            "value": "69"
+        },
+        "shortText": "Новый паркетник американской марки получил полуторалитровый турбодвигатель. Для модели заявлены пяти- и семиместный салон.",
+        "fullText": "./data/html/chevrolet-captiva.html"
+    },
+    {
+        "title": "Chevrolet интригует: новый кроссовер и таинственная модель, которая передаст привет Opel",
+        "img": "./img/auto/chevrolet-1.jpg",
+        "date": {
+            "img": "./img/icons/date.png",
+            "value": "09.11.2018"
+        },
+        "views": {
+            "img": "./img/icons/views.png",
+            "value": "876"
+        },
+        "rating": {
+            "img": "./img/icons/rating.png",
+            "value": "75"
+        },
+        "shortText": "Официальная премьера новинок американского бренда состоится на следующей неделе. Марка пытается сохранить интригу, но одна из моделей уже опознана.",
+        "fullText": "./data/html/chevrolet-1.html"
+    },
+    {
+        "title": "Chevrolet интригует: новый кроссовер и таинственная модель, которая передаст привет Opel",
+        "img": "./img/auto/volkswagen-i.d.jpeg",
+        "date": {
+            "img": "./img/icons/date.png",
+            "value": "09.11.2018"
+        },
+        "views": {
+            "img": "./img/icons/views.png",
+            "value": "1246"
+        },
+        "rating": {
+            "img": "./img/icons/rating.png",
+            "value": "324"
+        },
+        "shortText": "Официальная премьера новинок американского бренда состоится на следующей неделе. Марка пытается сохранить интригу, но одна из моделей уже опознана.",
+        "fullText": "./data/html/volkswagen-i.d.html"
+    }
+]

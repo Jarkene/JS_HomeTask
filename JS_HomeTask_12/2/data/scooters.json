@@ -1,0 +1,56 @@
+[
+    {
+        "title": "Женский скутер Yamaha Janus дебютировал на вьетнамском рынке",
+        "img": "./img/moto/Janus.jpg",
+        "date": {
+            "img": "./img/icons/date.png",
+            "value": "24.03.2018"
+        },
+        "views": {
+            "img": "./img/icons/views.png",
+            "value": "1458"
+        },
+        "rating": {
+            "img": "./img/icons/rating.png",
+            "value": "312"
+        },
+        "shortText": "Компания Yamaha стремится расширить свое присутствие на вьетнамском рынке двухколесных транспортных средств.",
+        "fullText": "./data/html/Janus.html"
+    },
+    {
+        "title": "Туристический скутер Honda X-ADV готовится к производству",
+        "img": "./img/moto/Honda-X-ADV.jpg",
+        "date": {
+            "img": "./img/icons/date.png",
+            "value": "29.02.2016"
+        },
+        "views": {
+            "img": "./img/icons/views.png",
+            "value": "517"
+        },
+        "rating": {
+            "img": "./img/icons/rating.png",
+            "value": "24"
+        },
+        "shortText": "Новинка дебютирует на международной выставке мототехники EICMA, которая пройдет в Милане с 8 по 13 ноября 2016 года.",
+        "fullText": "./data/html/Honda-X-ADV.html"
+    },
+    {
+        "title": "Yamaha: новое поколение трехколесных скутеров",
+        "img": "./img/moto/yamaha-03GEN.jpg",
+        "date": {
+            "img": "./img/icons/date.png",
+            "value": "26.02.2016"
+        },
+        "views": {
+            "img": "./img/icons/views.png",
+            "value": "653"
+        },
+        "rating": {
+            "img": "./img/icons/rating.png",
+            "value": "54"
+        },
+        "shortText": "Японский бренд Yamaha представил два новых концепта.",
+        "fullText": "./data/html/yamaha-03GEN.html"
+    }
+]

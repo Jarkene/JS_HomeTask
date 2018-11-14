@@ -1,0 +1,56 @@
+[
+    {
+        "title": "Kawasaki W800 от Wrenchmonkees",
+        "img": "./img/moto/Kawasaki-W800-1.jpg",
+        "date": {
+            "img": "./img/icons/date.png",
+            "value": "22.09.2018"
+        },
+        "views": {
+            "img": "./img/icons/views.png",
+            "value": "1498"
+        },
+        "rating": {
+            "img": "./img/icons/rating.png",
+            "value": "352"
+        },
+        "shortText": "Страсть к мотоциклам можно обнаружить даже там, где меньше всего ожидаешь – на маленьком острове в Юго-Восточной Азии.",
+        "fullText": "./data/html/Kawasaki-W800.html"
+    },
+    {
+        "title": "Suzuki GSX750 Inazuma",
+        "img": "./img/moto/Suzuki-GSX750-1.jpg",
+        "date": {
+            "img": "./img/icons/date.png",
+            "value": "09.10.2018"
+        },
+        "views": {
+            "img": "./img/icons/views.png",
+            "value": "2498"
+        },
+        "rating": {
+            "img": "./img/icons/rating.png",
+            "value": "862"
+        },
+        "shortText": "Не так уж часто можно увидеть кастомный Suzuki. Хотя Suzuki – один из представителей японской «большой четверки», он не так часто появляется в мире кастомных байков.",
+        "fullText": "./data/html/Suzuki-GSX750.html"
+    },
+    {
+        "title": "Honda CL400 от Urban Rider",
+        "img": "./img/moto/honda-400.jpg",
+        "date": {
+            "img": "./img/icons/date.png",
+            "value": "24.12.2018"
+        },
+        "views": {
+            "img": "./img/icons/views.png",
+            "value": "4498"
+        },
+        "rating": {
+            "img": "./img/icons/rating.png",
+            "value": "982"
+        },
+        "shortText": "Не так часто попадаются кастомы, главной целью сборки которых была практичность.",
+        "fullText": "./data/html/honda-400.html"
+    }
+]

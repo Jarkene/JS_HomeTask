@@ -1,0 +1,13 @@
+[{
+    "title": "Спортивные",
+    "img": "./img/moto/sport_moto.png",
+    "path": "data/sport_moto.json"
+}, {
+    "title": "Скутеры",
+    "img": "./img/moto/scooter.png",
+    "path": "data/scooters.json"
+}, {
+    "title": "Классик",
+    "img": "./img/moto/classic.png",
+    "path": "data/classic.json"
+}]

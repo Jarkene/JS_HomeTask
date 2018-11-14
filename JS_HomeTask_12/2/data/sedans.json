@@ -1,0 +1,56 @@
+[
+    {
+        "title": "FAW OLEY",
+        "img": "./img/auto/faw-oley.jpg",
+        "date": {
+            "img": "./img/icons/date.png",
+            "value": "24.03.2018"
+        },
+        "views": {
+            "img": "./img/icons/views.png",
+            "value": "517"
+        },
+        "rating": {
+            "img": "./img/icons/rating.png",
+            "value": "24"
+        },
+        "shortText": "Цена: от 491 000 рублей",
+        "fullText": "./data/html/faw-oley.html"
+    },
+    {
+        "title": "BRILLIANCE H230",
+        "img": "./img/auto/brilliance-h230.jpg",
+        "date": {
+            "img": "./img/icons/date.png",
+            "value": "24.07.2018"
+        },
+        "views": {
+            "img": "./img/icons/views.png",
+            "value": "785"
+        },
+        "rating": {
+            "img": "./img/icons/rating.png",
+            "value": "65"
+        },
+        "shortText": "Цена: от 530 000 рублей",
+        "fullText": "./data/html/brilliance-h230.html"
+    },
+    {
+        "title": "RAVON NEXIA",
+        "img": "./img/auto/ravon-nexia.jpeg",
+        "date": {
+            "img": "./img/icons/date.png",
+            "value": "21.02.2017"
+        },
+        "views": {
+            "img": "./img/icons/views.png",
+            "value": "1678"
+        },
+        "rating": {
+            "img": "./img/icons/rating.png",
+            "value": "176"
+        },
+        "shortText": "Цена: от 549 000 рублей",
+        "fullText": "./data/html/ravon-nexia.html"
+    }
+]

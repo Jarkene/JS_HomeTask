@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css?family=Kumar+One+Outline');
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+@import url('https://fonts.googleapis.com/css?family=Russo+One');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+header {
+    z-index: 1;
+    min-width: 320px;
+    position: sticky;
+    width: 100%;
+    top: 0px;
+    padding: 20px 0;
+    background-color: #502a2a;
+    box-shadow: 0px 0px 40px rgba(0,0,0);
+}
+
+body {
+    background-color: #50403e;
+}
+
+hr {
+    border: 2px solid black;
+}
+
+.logo {
+    margin-left: 50px;
+}
+
+.logo-1 {
+    font-size: 24px;
+    font-family: 'Kumar One Outline', cursive;
+    color: coral;
+}
+
+.logo-2 {
+    font-size: 34px;
+    font-family: 'Kumar One Outline', cursive;
+    color: crimson;
+}
+
+.categories {
+    padding-right: 150px;
+    padding-top: 20px;
+    display: block;
+    height: inherit;
+    float: right;
+}
+
+a {
+    text-decoration: none;
+}
+
+.categories a {
+    margin-right: 50px;
+    font-size: 24px;
+    color: coral;
+    font-family: 'Russo One', sans-serif;
+}
+
+.categories a:hover {
+    color: #fdc2ac;
+}
+
+.container {
+    min-width: 320px;
+    width: 70%;
+    background-color: antiquewhite;
+    margin: auto;
+    margin-top: 20px;
+    padding: 50px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    box-shadow: 0px 0px 40px rgba(0,0,0);
+}
+
+.start {
+    padding: 30px 0;
+    font-size: 62px;
+    margin-top: 20px;
+    animation: start 1.5s ease alternate-reverse infinite;
+}
+
+.responsive-btn {
+    color: coral;
+    font-size: 54px;
+    float: right;
+    position: relative;
+    bottom: 10px;
+    right: 10px;
+    display: none;
+}
+
+.container .subcat {
+    display: block;
+    align-self: flex-end;
+}
+
+.container .subcat .img-container {
+    height: inherit;
+}
+
+.container .subcat .subcat-img {
+    width: 200px;
+}
+
+.container .subcat .subcat-text {
+    text-align: center;
+    font-family: 'Lobster', cursive;
+    font-size: 24px;
+    color: coral;
+}
+
+.container .subcat-title {
+    margin-bottom: 20px;
+    color: coral;
+}
+
+.container .article {
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 40px;
+    border: 2px solid coral;
+}
+
+.container .article:last-child {
+    margin-bottom: 0;
+}
+
+.container .article .article-img {
+    float: left;
+    margin-right: 10px;
+    width: 200px;
+}
+
+.container .article .article-title {
+    text-decoration: underline;
+    font-size: 30px;
+    position: relative;
+    bottom: 8px;
+    color: coral;
+    display: block;
+}
+
+.container .article .article-title:hover {
+    color: #fbaf93;
+}
+
+.container .article .article-short {
+    font-size: 20px;
+    position: relative;
+    top: 5px;
+}
+
+.container .article .article-info {
+    font-size: 18px;
+    position: relative;
+    top: 20px;
+}
+
+.container .article .article-info div {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.container .article .article-info .article-icon {
+    width: 15px;
+}
+
+.container .article-navigation {
+    margin-bottom: 25px;
+}
+
+.container .article-navigation .article-nav-btn {
+    font-size: 24px;
+    color: #d45f00;
+    height: 30px;
+    padding: 10px;
+    border: 2px solid #d45f00;
+}
+
+.container .article-navigation .article-nav-btn:hover {
+    color: white;
+    background-color: #d45f00;
+}
+
+@keyframes start {
+    from {color: #c7ab9f88}
+    to {color: #d45f00}
+}
+
+@media screen and (max-width: 1070px) {
+
+    .categories {
+        background-color: #502a2a;
+        float: none;
+        display: none;
+        position: absolute;
+        padding: 0;
+        width: 100%;
+    }
+
+    .categories a {
+        display: block;
+        text-align: center;
+        margin-right: 0;
+        border-top: 2px solid coral;
+        padding: 20px;
+    }
+
+    .categories a:last-child {
+        border-bottom: 2px solid coral;
+    }
+
+    .responsive-btn {
+        display: inline;
+    }
+}
+
+@media screen and (max-width: 1150px) {
+    .container {
+        width: 100%
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .start {
+        font-size: 36px;
+    }
+}
+
+@media screen and (max-width: 510px) {
+    .container .article .article-img {
+        float: none;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 10px;
+    }
+
+    .container .article {
+        width: 100%;
+    }
+}

@@ -1,0 +1,56 @@
+[
+    {
+        "title": "LTD Bandit 24",
+        "img": "./img/velo/LTD-Bandit-24.jpg",
+        "date": {
+            "img": "./img/icons/date.png",
+            "value": "12.02.2018"
+        },
+        "views": {
+            "img": "./img/icons/views.png",
+            "value": "4352"
+        },
+        "rating": {
+            "img": "./img/icons/rating.png",
+            "value": "342"
+        },
+        "shortText": "Сравнительно бюджетная модель, которую в Беларуси вполне реально приобрести за $260.",
+        "fullText": "./data/html/LTD-Bandit-24.html"
+    },
+    {
+        "title": "Stels Navigator 700 (2014)",
+        "img": "./img/velo/Stels-Navigator-700.jpeg",
+        "date": {
+            "img": "./img/icons/date.png",
+            "value": "11.03.2016"
+        },
+        "views": {
+            "img": "./img/icons/views.png",
+            "value": "5214"
+        },
+        "rating": {
+            "img": "./img/icons/rating.png",
+            "value": "244"
+        },
+        "shortText": "Городской велосипед, подойдет для взрослого человека. Здесь 21 скорость, колеса с двойными ободами, рама из алюминиевого сплава",
+        "fullText": "./data/html/Stels-Navigator-700.html"
+    },
+    {
+        "title": "GIANT ROAM 1 DISC (2016)",
+        "img": "./img/velo/GIANT-ROAM.jpg",
+        "date": {
+            "img": "./img/icons/date.png",
+            "value": "24.03.2018"
+        },
+        "views": {
+            "img": "./img/icons/views.png",
+            "value": "517"
+        },
+        "rating": {
+            "img": "./img/icons/rating.png",
+            "value": "24"
+        },
+        "shortText": "Городской велосипед, подойдет для взрослого человека. Здесь 21 скорость, колеса с двойными ободами, рама из алюминиевого сплава",
+        "fullText": "./data/html/GIANT-ROAM.html"
+    }
+]

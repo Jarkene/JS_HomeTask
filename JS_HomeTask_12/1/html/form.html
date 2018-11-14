@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="./css/form.css">
+<h2>Валидация формы</h2>
+<br />
+<form method="get">
+    <fieldset>
+        <legend>Ваши данные</legend>
+        <label>
+            <span>Имя:</span>
+            <input type="text" id="name">
+            <span class="help help-name incorrect">*</span>
+        </label>
+        <label>
+            <span>Телефон:</span>
+            <input type="text" id="phone">
+            <span class="help help-phone incorrect">*</span>
+        </label>
+        <label>
+            <span>Email:</span>
+            <input type="text" id="email">
+            <span class="help help-email incorrect">*</span>
+        </label>
+        <label>
+            <span>Сайт:</span>
+            <input type="text" id="site">
+            <span class="help help-site incorrect">*</span>
+        </label>
+    </fieldset>
+    <button type="submit">Отправить</button>
+</form>
+
+<script src="../js/form_validation.js"></script>

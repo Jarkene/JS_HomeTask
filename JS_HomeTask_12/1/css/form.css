@@ -1,0 +1,35 @@
+fieldset {
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin: 30px 0;
+}
+
+label :first-child {
+    display: inline-block;
+    width: 65px;
+}
+
+label, input {
+    height: 20px;
+}
+
+input {
+    margin-right: 10px;
+}
+
+.submit {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.incorrect {
+    color: red;
+}
+
+.correct {
+    color: green;
+}

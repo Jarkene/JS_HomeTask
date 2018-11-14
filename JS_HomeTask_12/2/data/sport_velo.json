@@ -1,0 +1,56 @@
+[
+    {
+        "title": "Stark Peloton 700.1 (2018)",
+        "img": "./img/velo/Stark-Peloton.jpg",
+        "date": {
+            "img": "./img/icons/date.png",
+            "value": "27.03.2018"
+        },
+        "views": {
+            "img": "./img/icons/views.png",
+            "value": "567"
+        },
+        "rating": {
+            "img": "./img/icons/rating.png",
+            "value": "54"
+        },
+        "shortText": "Шоссейный велосипед начального уровня с навесным оборудованием Shimano.",
+        "fullText": "./data/html/Stark-Peloton.html"
+    },
+    {
+        "title": "Merida Reacto Track 500 (2017)",
+        "img": "./img/velo/Merida-Reacto.jpg",
+        "date": {
+            "img": "./img/icons/date.png",
+            "value": "13.04.2018"
+        },
+        "views": {
+            "img": "./img/icons/views.png",
+            "value": "545"
+        },
+        "rating": {
+            "img": "./img/icons/rating.png",
+            "value": "98"
+        },
+        "shortText": "Шоссейный трековый велосипед без переключения передач.",
+        "fullText": "./data/html/Merida-Reacto.html"
+    },
+    {
+        "title": "Bulls Vulture 1 (2017)",
+        "img": "./img/velo/Bulls-Vulture.jpg",
+        "date": {
+            "img": "./img/icons/date.png",
+            "value": "13.06.2017"
+        },
+        "views": {
+            "img": "./img/icons/views.png",
+            "value": "5445"
+        },
+        "rating": {
+            "img": "./img/icons/rating.png",
+            "value": "398"
+        },
+        "shortText": "Шоссейный велосипед начального уровня с оборудованием любительского класса Shimano.",
+        "fullText": "./data/html/Bulls-Vulture.html"
+    }
+]
