@@ -51,10 +51,11 @@ class Store {
 
 	addItem(t, n) {
 
+		// если массив товаров пуст или такого товара еще нет
 		if (!this.items.length || !this.items.filter(item => item.id == t.id).length) {
-			var newItem = Object.create(t);
+			var newItem = Object.create(t); // создаем каждому магазину свой товар, прототип которого - t
 			newItem.amount = n;
-			newItem.price = newItem.price * (parseFloat(this.markup) / 100 + 1);
+			newItem.price = newItem.price * (parseFloat(this.markup) / 100 + 1); // пересчитываем цену, исходя из наценки магазина
 
 			this.items.push(newItem);
 		} else {
@@ -73,9 +74,13 @@ class Store {
 	}
 
 	sellItem(t, n) {
+
+		// находим нужный нам товар и если его количество больше n, то ставим n равное количеству
 		if (this.items.filter(item => item.id == t.id)[0].amount < n) {
 			n = this.items.filter(item => item.id == t.id)[0].amount;
 		}
+
+		// удаляем товары и добавляем магазину прибыль
 		this.removeItem(t, n);
 		this.income += t.price * n;
 	}
@@ -104,7 +109,6 @@ class Store {
 	getItemsDom() {
 		return this.items.map(item => {
 			var itemDom = item.dom();
-
 			var market = this;
 
 			itemDom.innerHTML +=
