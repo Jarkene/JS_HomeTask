@@ -77,6 +77,7 @@ class Store {
 
 		// находим нужный нам товар и если его количество больше n, то ставим n равное количеству
 		if (this.items.filter(item => item.id == t.id)[0].amount < n) {
+			console.log(n);
 			n = this.items.filter(item => item.id == t.id)[0].amount;
 		}
 
@@ -121,17 +122,19 @@ class Store {
 			itemDom.querySelector('.input-amt').setAttribute('max', item.amount);
 
 			itemDom.querySelector(".addToCart").addEventListener('click', function (e) {
-				var n = this.previousElementSibling.value;
-				if (n > item.amount) n = item.amount;
+				var n = this.previousElementSibling;
+				if (n.value > item.amount) n.value = item.amount;
 
-				market.sellItem(item, n);
-
-				itemDom.querySelector('.item-amt').innerHTML -= n;
+				market.sellItem(item, n.value);
 
 				var t = item.title;
 				var p = item.price;
-				var s = p * n;
-				alert(`Куплено ${n} штук товара ${t}. Сумма: ${s.toFixed(2)} руб`);
+				var s = p * n.value;
+				alert(`Куплено ${n.value} штук товара ${t}. Сумма: ${s.toFixed(2)} руб`);
+
+				itemDom.querySelector('.item-amt').innerHTML -= n.value;
+				n.value = 0;
+				n.max = itemDom.querySelector('.item-amt').innerHTML;
 			})
 
 			return itemDom;
@@ -189,13 +192,22 @@ request.then(function (data) {
 	})
 	stores[0].addItem(items[0], 10);
 	stores[0].addItem(items[1], 5);
-	stores[0].addItem(items[2], 7);
+	stores[0].addItem(items[2], 11);
+	stores[0].addItem(items[3], 18);
+	stores[0].addItem(items[4], 15);
+	stores[0].addItem(items[5], 7);
 
-	stores[1].addItem(items[2], 15);
-	stores[1].addItem(items[1], 7);
-	stores[1].addItem(items[4], 8);
+	stores[1].addItem(items[1], 17);
+	stores[1].addItem(items[2], 16);
+	stores[1].addItem(items[3], 12);
+	stores[1].addItem(items[5], 15);
+	stores[1].addItem(items[6], 7);
+	stores[1].addItem(items[7], 8);
 
-	stores[2].addItem(items[3], 24);
+	stores[2].addItem(items[0], 13);
+	stores[2].addItem(items[1], 9);
+	stores[2].addItem(items[2], 17);
+	stores[2].addItem(items[3], 4);
 	stores[2].addItem(items[4], 17);
 	stores[2].addItem(items[5], 12);
 
