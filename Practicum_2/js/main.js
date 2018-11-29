@@ -13,21 +13,15 @@ class Request {
 
 class CSV {
     static parse(data) {
-        console.log(data);
-        var headers = data.split('\r\n')[0].split(', ');
-        var content = data.split('\r\n').slice(1).map(string => {
-            return string.split(', ');
-        });
-        var objects_arr = content.map(content_segment => {
-            console.log(content_segment);
+        var props = data.split('\r\n')[0].split(', ');
+        var valuesArr = data.split('\r\n').slice(1).map(string => string.split(', '));
+        return valuesArr.map(values => {
             var obj = {};
-            content_segment.forEach((field, i) => {
-                obj[headers[i]] = field;
+            values.forEach((value, i) => {
+                obj[props[i]] = value;
             })
-            console.log(obj);
             return obj;
         })
-        return objects_arr;
     }
 }
 
@@ -89,6 +83,13 @@ class EmployeesTable {
 
     updateInfo() {
         var info = document.querySelector('.info-container');
+        var table = this;
+
+        Array.from(document.querySelectorAll('.checked')).forEach(checked => {
+            table._checkedEmployees.push(table._employees.filter(emp => {
+                return emp.id == checked.parentNode.nextElementSibling.innerHTML;
+            })[0]);
+        });
 
         var checkedEmployees = this._checkedEmployees;
         if (!checkedEmployees.length) {
@@ -96,19 +97,15 @@ class EmployeesTable {
         }
         info.innerHTML = 
             `<div><b>Выбрано сотрудников:</b> ${checkedEmployees.length}<br></div>
-
              <div><b>Средний возраст сотрудников:</b> ${(checkedEmployees.reduce((age, emp) => {
                 return emp.age + age;
              }, 0) / checkedEmployees.length).toFixed(1)}<br></div>
-
              <div><b>Средняя ЗП:</b> ${(checkedEmployees.reduce((salary, emp) => {
                 return emp.salary + salary;
              }, 0) / checkedEmployees.length).toFixed(2)}<br></div>
-
              <div><b>Суммарная ЗП:</b> ${checkedEmployees.reduce((salary, emp) => {
                 return emp.salary + salary;
              }, 0)}<br></div>
-
              <div><b>&nbsp;Пенсия:</b><br> ${checkedEmployees.map((emp) => {
                 return `<em>${emp.name}</em> - ${(new Date().getFullYear() - emp.entry_date.getFullYear()) * emp.salary * 0.01}<br>`;
              }, 0).join('')}<br></div>`
@@ -152,7 +149,6 @@ class TableEventListener {
         }
     }
     chooseEmployee(event) {
-        var employees = this._employees;
         var table = this;
         table._checkedEmployees = [];
 
@@ -163,12 +159,6 @@ class TableEventListener {
                 event.target.classList.add('checked');
             }
         }
-
-        Array.from(document.querySelectorAll('.checked')).forEach(checked => {
-            table._checkedEmployees.push(employees.filter(emp => {
-                return emp.id == checked.parentNode.nextElementSibling.innerHTML;
-            })[0]);
-        });
 
         table.updateInfo();
     }
@@ -184,8 +174,6 @@ class TableEventListener {
     }
     chooseEmployeeFromMenu(event) {
         if (event.target.classList.contains('check')) {
-            var table = this;
-            var employees = this._employees;
             this._checkedEmployees = [];
 
             var checkEl = Array.from(document.querySelectorAll('.id')).filter(id => {
@@ -195,19 +183,11 @@ class TableEventListener {
             checkEl.checked = true;
             checkEl.classList.add('checked');
 
-            Array.from(document.querySelectorAll('.checked')).forEach(checked => {
-                table._checkedEmployees.push(employees.filter(emp => {
-                    return emp.id == checked.parentNode.nextElementSibling.innerHTML;
-                })[0]);
-            });
-
             this.updateInfo();
         }
     }
     chooseAll() {
         if (event.target.classList.contains('check-all')) {
-            var table = this;
-            var employees = this._employees;
             this._checkedEmployees = [];
 
             Array.from(document.querySelectorAll('.id')).forEach(id => {
@@ -219,12 +199,6 @@ class TableEventListener {
                     check.checked = false;
                     check.classList.remove('checked');
                 }
-            });
-
-            Array.from(document.querySelectorAll('.checked')).forEach(checked => {
-                table._checkedEmployees.push(employees.filter(emp => {
-                    return emp.id == checked.parentNode.nextElementSibling.innerHTML;
-                })[0]);
             });
 
             this.updateInfo();
