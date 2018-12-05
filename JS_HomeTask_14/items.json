@@ -1,0 +1,19 @@
+[{
+    "title": "Стул", "price": "800", "img": "./img/chair.jpg", "category": "Furniture"
+}, {
+    "title": "Стол", "price": "900", "img": "./img/table.jpg", "category": "Furniture"
+}, {
+    "title": "Шкаф", "price": "950", "img": "./img/cupboard.jpg", "category": "Furniture"
+}, {
+    "title": "Coca-cola", "price": "120", "img": "./img/cola.jpg", "category": "Drinks"
+}, {
+    "title": "Fanta", "price": "70", "img": "./img/fanta.jpg", "category": "Drinks"
+}, {
+    "title": "Sprite", "price": "100", "img": "./img/sprite.jpg", "category": "Drinks"
+}, {
+    "title": "Milka", "price": "154", "img": "./img/milka.jpg", "category": "Chocolate"
+}, {
+    "title": "Alpen Gold", "price": "112", "img": "./img/alpen.jpg", "category": "Chocolate"
+}, {
+    "title": "Спартак", "price": "187", "img": "./img/spartak.jpg", "category": "Chocolate"
+}]
