@@ -1,15 +1,17 @@
-; (function () {
-
+;(function () {
     class HttpRequest {
-        constructor(path) {
-            this.xhr = new XMLHttpRequest();
-            this.xhr.open("GET", path, true);
-            this.xhr.send(null);
-        }
-        then(callback) {
-            this.xhr.onload = function () {
-                callback(this.responseText);
-            }
+        static httpGet(path) {
+            return new Promise(function(onResolve, onReject) {
+                const xhr = new XMLHttpRequest();
+                xhr.open("GET", path, true);
+                xhr.onload = function() {
+                    onResolve(this.responseText);
+                }
+                xhr.onerror = function() {
+                    onReject(this.statusText);
+                }
+                xhr.send(null);
+            })
         }
     }
 
@@ -293,12 +295,12 @@
 
     class App {
         static init() {
-            const request = new HttpRequest('./data/employees.csv');
-            request.then(function (data) {
-                CSV.parse(data)
-                    .map(employee => new Employee(employee))
-                    .reduce((p, c) => p.addEmployee(c), new EmployeesTable);
-            })
+            HttpRequest.httpGet('./data/employees.csv')
+                .then(function(data) {
+                    CSV.parse(data)
+                        .map(employee => new Employee(employee))
+                        .reduce((p, c) => p.addEmployee(c), new EmployeesTable);
+                })
         }
     }
 
