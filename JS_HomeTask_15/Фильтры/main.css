@@ -1,0 +1,21 @@
+label {
+    display: block;
+    text-align: center;
+}
+
+#canvas {
+    border: 3px solid black;
+    display: block;
+    margin: 20px auto;
+}
+
+.img {
+    display: none;
+}
+
+.filters {
+    width: 350px;
+    margin: auto;
+    text-align: center;
+    display: none;
+}
