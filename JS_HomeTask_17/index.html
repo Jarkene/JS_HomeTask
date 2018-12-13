@@ -10,30 +10,29 @@
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
-    <script>firebase.initializeApp({databaseURL: "https://todos-789b9.firebaseio.com/"});</script>
-    <script src="./main.js"></script>
+    <script>firebase.initializeApp({ databaseURL: "https://todos-789b9.firebaseio.com/" });</script>
 </head>
 
 <body>
     <div id="app">
-        <!-- <div class="todo-list">
-            <h1>TODOLIST</h1>
-            <div class="app__main-input">
-                <input @keydown.ENTER="editManager.status ? editTodo() :addTodo()" v-model="text" type="text" class="input">
-                <button v-if="!editManager.status" @click="addTodo">add todo</button>
-                <button v-else @click="editTodo">edit</button>
-            </div>
-            <todo v-for="(todo) in todos" :content="todo.text" @remove-todo="remove(todo.id)" @edit-todo="edit(todo.text)"></todo>
-        </div> -->
-        <div class="app__lists-input">
-            <input v-model="listsText" type="text" class="input">
-            <button v-if="!listsEditManager.status" @click="addList">add list</button>
-            <button v-else @click="editList">edit</button>
+        <div class="app__list-input">
+            <input v-model="listInput" placeholder="Добавьте список...">
+            <button v-if="!editManager.isEdit" @click="addTodoList">Добавить</button>
+            <button v-else @click="renameList">Изменить</button>
         </div>
         <div class="lists-container">
-            <todo-list v-for="list in lists" :listname="list" @remove-list="removeList(list)"></todo-list>
+            <todo-list
+                v-for="todoList in todoLists"
+                :list="todoList"
+                @remove-list="removeList(todoList)"
+                @rename-list="toggleAddingInput(todoList)"
+                @add-todo="addTodo"
+                @edit-todo="editTodo"
+                @remove-todo="removeTodo">
+            </todo-list>
         </div>
     </div>
+    <script src="./main.js"></script>
 </body>
 
 </html>

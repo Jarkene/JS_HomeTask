@@ -1,151 +1,162 @@
-window.onload = function () {
+Vue.component('todo', {
+    template: `
+        <div class="todo">
+        <span>{{ content }}</span>
+        <div>
+            <button @click="editTodo">edit</button>
+            <button @click="removeTodo">x</button>
+        </div>
+        </div>
+    `,
+    methods: {
+        editTodo() {
+            this.$emit('edit-todo');
+        },
+        removeTodo() {
+            this.$emit('remove-todo');
+        }
+    },
+    props: ['content']
+})
 
-    Vue.component('todo-list', {
-        template: `
-            <div class="todo-list">
-                <h1>{{ listname }}</h1>
-                <div class="main-input__button-set">
-                    <button @click="removeList">delete</button>
-                </div>
-                <div class="app__main-input">
-                    <input v-model="text" type="text" class="input">
-                    <button v-if="!editManager.status" @click="addTodo">add todo</button>
-                    <button v-else @click="editTodo">edit</button>
-                </div>
-                <todo v-for="(todo) in todos" :content="todo.text" @remove-todo="remove(todo.id)" @edit-todo="edit(todo.text)"></todo>
+Vue.component('todo-list', {
+    template: `
+        <div class="todo-list">
+            <h1>{{ list.title }}</h1>
+            <div class="main-input__button-set">
+                <button @click="removeList">Удалить</button>
+                <button @click="renameList">Редактировать</button>
             </div>
-        `,
-        data() {
-            return {
-                editManager: {
-                    status: false,
-                    todo: null
-                },
-                curID: 0,
-                emptyIDs: [], // used to fill up spaces in db
-                text: "",
-                todos: []  // {text, id}
-            }
-        },
-        created() {
-            this.fetchTodos()
-            console.log(this.listname);
-        },
-        methods: {
-            removeList() {
-                this.$emit("remove-list");
-            },
-            editTodo() {
-                const app = this;
-                var todoToChange = this.todos.filter(todo => {
-                    return todo.text == this.editManager.todo;
-                })[0];
-
-                firebase.database().ref('todos/' + `${this.listname}/` + `${todoToChange.id}`).set({
-                    text: app.text,
-                    id: todoToChange.id
-                });
-                this.resetData();
-                this.fetchTodos();
-            },
-            edit(content) {
-                this.text = content;
-                this.editManager.status = true;
-                this.editManager.todo = content;
-            },
-            remove(id) {
-                firebase.database().ref('todos/' + `${this.listname}/` + `${id}`).remove();
-                this.emptyIDs.push(id);
-            },
-            resetData() {
-                this.text = "";
-                this.editManager = {
-                    status: false,
-                    todo: null
-                }
-            },
-            addTodo() {
-                const app = this;
-                var idToAdd = this.emptyIDs.length ? this.emptyIDs.sort((a, b) => a - b)
-                    .shift() : ++this.curID;
-
-                console.log(this.listname);
-
-                firebase.database().ref('todos/' + `${this.listname}/` + `${idToAdd}`).set({
-                    text: app.text,
-                    id: idToAdd
-                }).then(() => {
-                    app.fetchTodos();
-                });
-                this.resetData();
-            },
-            fetchTodos() {
-                const app = this;
-                firebase.database().ref('todos/' + `${this.listname}`).on('value', function (snapshot) {
-                    app.todos = [];
-                    snapshot.forEach(function (childSnapshot) {
-                        app.todos.push({
-                            text: childSnapshot.val()['text'],
-                            id: childSnapshot.val()['id']
-                        });
-                    });
-                    app.curID = app.todos.length ? Math.max.apply(null, app.todos.map(todo => +todo['id'])) : 0;
-                })
-            },
-        },
-        props: ["listname"]
-    })
-
-    Vue.component('todo', {
-        template: `
-            <div class="todo">
-            <span>{{ content }}</span>
-            <div>
-                <button @click="edit">edit</button>
-                <button @click="remove">x</button>
+            <div class="app__todo-input">
+                <input v-model="todoInput" type="text" class="input">
+                <button v-if="!editManager.isEdit" @click="addTodo">Добавить</button>
+                <button v-else @click="editTodo">Изменить</button>
             </div>
-            </div>
-        `,
-        methods: {
-            edit() {
-                this.$emit("edit-todo", this.content)
-            },
-            remove() {
-                this.$emit("remove-todo")
-            }
-        },
-        props: ["content"]
-    })
-
-    new Vue({
-        el: "#app",
-        data: {
-            lists: [],
-            listsText: '',
-            listsEditManager: {
-                status: false,
-                todo: null
-            }
-        },
-        created() {
-            this.fetchLists();
-        },
-        methods: {
-            addList() {
-                this.lists.push(this.listsText);
-            },
-            removeList(name) {
-                firebase.database().ref('todos/' + `${name}`).remove();
-                this.fetchLists();
-            },
-            fetchLists() {
-                var app = this;
-                firebase.database().ref('todos/').on('value', function (snapshot) {
-                    app.lists = Object.keys(snapshot.val()).map(key => {
-                        return key;
-                    });
-                })
+            <todo 
+                v-for="(todo) in list.data" 
+                :content="todo" 
+                @remove-todo="removeTodo(todo)" 
+                @edit-todo="toggleAddingInput(todo)">
+            </todo>
+        </div>
+    `,
+    data() {
+        return {
+            todoInput: '',
+            editManager: {
+                isEdit: false,
+                text: ''
             }
         }
-    })
-}
+    },
+    methods: {
+        removeList() {
+            this.$emit("remove-list");
+        },
+        renameList() {
+            this.$emit("rename-list");
+        },
+        addTodo() {
+            if (!this.list.data) this.list.data = [];
+            this.list.data.push(this.todoInput);
+            this.todoInput = '';
+            this.$emit("add-todo", this.list);
+        },
+        toggleAddingInput(todo) {
+            this.editManager.isEdit = true;
+            this.editManager.text = todo;
+            this.todoInput = todo;
+        },
+        editTodo() {
+            const index = this.list.data.findIndex(todo => todo == this.editManager.text);
+            this.list.data[index] = this.todoInput;
+            this.editManager.isEdit = false;
+            this.todoInput = '';
+            this.$emit("edit-todo", this.list);
+        },
+        removeTodo(todoToRemove) {
+            const index = this.list.data.findIndex(todo => todo == todoToRemove);
+            this.list.data.splice(index, 1);
+            this.$emit("remove-todo", this.list);
+        }
+    },
+    props: ['list']
+})
+
+new Vue({
+    el: '#app',
+    data: {
+        listInput: '',
+        database: firebase.database().ref('todo-lists/'),
+        todoLists: [],
+        editManager: {
+            isEdit: false,
+            text: ''
+        }
+    },
+    created() {
+        this.loadData();
+    },
+    methods: {
+        isListNameValid() {
+            if (this.todoLists.some(list => list.title == this.listInput)) {
+                return false;
+            }
+            if (this.listInput == '') {
+                return false;
+            }
+            return true;
+        },
+        addTodoList() {
+            this.todoLists.push({ title: this.listInput });
+            this.reloadDatabase();
+        },
+        removeList(listToRemove) {
+            this.todoLists = this.todoLists.filter(list => list.title != listToRemove.title);
+            this.reloadDatabase();
+        },
+        toggleAddingInput(listToRename) {
+            this.listInput = listToRename.title;
+            this.editManager.text = listToRename.title;
+            this.editManager.isEdit = true;
+        },
+        renameList() {
+            // if (!this.isListNameValid()) {
+            //     alert('Поле ввода пустое либо такое название уже есть!');
+            //     return;
+            // }
+            this.todoLists.filter(list => list.title == this.editManager.text)[0].title = this.listInput;
+            this.reloadDatabase();
+        },
+        addTodo(listToAdd) {
+            this.todoLists.filter(list => list.title == listToAdd.title)[0] = listToAdd;
+            this.reloadDatabase();
+        },
+        editTodo(listToEdit) {
+            this.todoLists.filter(list => list.title == listToEdit.title)[0] = listToEdit;
+            this.reloadDatabase();
+        },
+        removeTodo(listToRemove) {
+            this.todoLists.filter(list => list.title == listToRemove.title)[0] = listToRemove;
+            this.reloadDatabase();
+        },
+        loadData() {
+            const app = this;
+            this.database.on('value', function (snapshot) {
+                if (snapshot.val()) app.todoLists = snapshot.val();
+            });
+        },
+        reloadDatabase() {
+            const app = this;
+            this.database.remove();
+            this.database.set(this.todoLists).then(() => {
+                app.loadData();
+                app.listInput = '';
+                app.editManager = {
+                    isEdit: false,
+                    text: ''
+                }
+            });
+        }
+    }
+})
