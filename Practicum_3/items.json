@@ -2,7 +2,7 @@
 	{
 		"title": "Apple MacBook Pro 15",
 		"price": "3500",
-		"img": "apple-macbook-pro.jpg",
+		"img": "./img/apple-macbook-pro.jpg",
 		"category": "Ноутбуки",
 		"props": {
 			"Год выпуска": "2018",
@@ -21,7 +21,7 @@
 	{
 		"title": "Asus ViVo Book S15",
 		"price": "1800",
-		"img": "asus-vivo-book.jpg",
+		"img": "./img/asus-vivo-book-grey.jpg",
 		"category": "Ноутбуки",
 		"props": {
 			"Год выпуска": "2018",
@@ -40,7 +40,7 @@
 	{
 		"title": "Asus ViVo Book S15",
 		"price": "1800",
-		"img": "asus-vivo-book.jpg",
+		"img": "./img/asus-vivo-book-black.jpg",
 		"category": "Ноутбуки",
 		"props": {
 			"Год выпуска": "2018",
@@ -55,10 +55,11 @@
 			"Частота процессора": "1600",
 			"Тип": "Персональный"
 		}
-	}, {
+	}, 
+	{
 		"title": "Samsung Galaxy A7",
 		"price": "750",
-		"img": "sumsung-galaxy.jpg",
+		"img": "./img/samsung-galaxy.jpg",
 		"category": "Смартфоны",
 		"props": {
 			"Год выпуска": "2018",
@@ -76,7 +77,7 @@
 	{
 		"title": "Apple iPhone X",
 		"price": "2100",
-		"img": "apple-iphone-x.jpeg",
+		"img": "./img/apple-iphone-x.jpeg",
 		"category": "Смартфоны",
 		"props": {
 			"Год выпуска": "2017",
@@ -94,7 +95,7 @@
 	{
 		"title": "Apple iPad Pro 11",
 		"price": "2100",
-		"img": "apple-ipad-pro.jpg",
+		"img": "./img/apple-ipad-pro-white.jpg",
 		"category": "Планшеты",
 		"props": {
 			"Год выпуска": "2018",
@@ -103,7 +104,7 @@
 			"ОП": "4",
 			"Масса": "468",
 			"ОС": "iOS",
-			"Цвет": "серый",
+			"Цвет": "белый",
 			"Частота процессора": "2480",
 			"Размер экрана": "11",
 			"Запас энергии": "29.37"
@@ -112,7 +113,7 @@
 	{
 		"title": "Apple iPad Pro 11",
 		"price": "2100",
-		"img": "apple-ipad-pro.jpg",
+		"img": "./img/apple-ipad-pro-black.jpg",
 		"category": "Планшеты",
 		"props": {
 			"Год выпуска": "2018",
@@ -125,6 +126,79 @@
 			"Частота процессора": "2480",
 			"Размер экрана": "11",
 			"Запас энергии": "29.37"
+		}
+	},
+	{
+		"title": "Xiaomi Redmi Note 6 Pro",
+		"price": "540",
+		"img": "./img/xiaomi-redmi-6-black.jpg",
+		"category": "Смартфоны",
+		"props": {
+			"Год выпуска": "2018",
+			"Производитель": "Xiaomi",
+			"Количество ядер": "8",
+			"ОП": "4",
+			"Масса": "181",
+			"ОС": "Android",
+			"Цвет": "черный",
+			"Частота процессора": "1800",
+			"Размер экрана": "6.2",
+			"Аккумулятор": "4000"
+		}
+	},
+	{
+		"title": "Xiaomi Redmi Note 6 Pro",
+		"price": "540",
+		"img": "./img/xiaomi-redmi-6-red.webp",
+		"category": "Смартфоны",
+		"props": {
+			"Год выпуска": "2018",
+			"Производитель": "Xiaomi",
+			"Количество ядер": "8",
+			"ОП": "4",
+			"Масса": "181",
+			"ОС": "Android",
+			"Цвет": "красный",
+			"Частота процессора": "1800",
+			"Размер экрана": "6.2",
+			"Аккумулятор": "4000"
+		}
+	},
+	{
+		"title": "Xiaomi Mi Pad 4",
+		"price": "540",
+		"img": "./img/xiaomi-pad.png",
+		"category": "Планшеты",
+		"props": {
+			"Год выпуска": "2018",
+			"Производитель": "Xiaomi",
+			"Количество ядер": "8",
+			"ОП": "3",
+			"Масса": "342",
+			"ОС": "Android",
+			"Цвет": "черный",
+			"Частота процессора": "1800",
+			"Размер экрана": "8",
+			"Запас энергии": "29.37"
+		}
+	},
+	{
+		"title": "Xiaomi Mi Notebook Pro 15.6",
+		"price": "2100",
+		"img": "./img/xiaomi-notebook.jpg",
+		"category": "Ноутбуки",
+		"props": {
+			"Год выпуска": "2017",
+			"Производитель": "Xiaomi",
+			"Количество ядер": "4",
+			"ОП": "32",
+			"Процессор": "Intel Core i5",
+			"Масса": "1950",
+			"ОС": "Windows 10",
+			"Цвет": "тёмно-серый",
+			"Размер экрана": "15.6",
+			"Частота процессора": "1600",
+			"Тип": "Универсальный"
 		}
 	}
 ]

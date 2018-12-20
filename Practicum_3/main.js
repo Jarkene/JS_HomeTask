@@ -1,38 +1,3 @@
-// Vue.component('app-filter', {
-//     template: `
-//         <div class="app-filter">
-//             <div class="filter-item">Год выпуска: 
-//                 <div>
-//                     <input type="checkbox" id="2016" name="year" @input="addYear" />
-//                     <label for="2016">2016</label>
-//                 </div>
-//                 <div>
-//                     <input type="checkbox" id="2017" name="year" @input="addYear" />
-//                     <label for="2017">2017</label>
-//                 </div>
-//                 <div>
-//                     <input type="checkbox" id="2018" name="year" @input="addYear" />
-//                     <label for="2018">2018</label>
-//                 </div>
-//             </div>
-//         </div>
-//     `,
-//     data() {
-//         return {
-//             filtered: {
-//                 'Год выпуска': []
-//             }
-//         }
-//     },
-//     methods: {
-
-//     },
-//     created() {
-//         console.log(this.filter);
-//     },
-//     props: ['filter']
-// })
-
 Vue.component('app-category', {
     template: `
         <a href=# @click="categoryClick">{{ category }}</a>
@@ -48,35 +13,68 @@ Vue.component('app-category', {
 Vue.component('app-item', {
     template: `
         <div class="app-item">
-            <img class="item-img" :src="imgSrc" />
+            <img class="item-img" :src="item.img" width="130" height="100"/>
             <h3 class="item-title">{{ item.title }}</h3>
-            <div class="item-price">Цена: {{ item.price }}</div>
-            <div item-props>
-                <div>Свойства:</div>
-                <div class="item-prop" v-for="(prop, key) in item.props">{{ key }}: {{ prop }}</div>
+            <div class="item-price">Цена: {{ item.price }} руб.</div>
+            <div class="item-props">
+                <div class="item-prop" v-for="(prop, key) in item.props">{{ key }}: {{ prop }} &nbsp</div>
             </div>
             <div class="bold item-category">Категория: {{ item.category }}</div>
+            <input type="button" @click="buttonClick" class="button-add" value="Добавить в корзину">
         </div>
     `,
-    data() {
-        return {
-            imgSrc: `./img/${this.item.img}`
+    props: ['item'],
+    methods: {
+        buttonClick() {
+            this.$emit('button-click', this.item);
         }
-    },
-    props: ['item']
+    }
+})
+
+Vue.component('app-cart-item', {
+    template: `
+        <div class="order-item">
+            <img class="item-img" :src="item.img" width="130" height="100"/>
+            <h3 class="item-title">{{ item.title }}</h3>
+            <div class="item-price">Цена: {{ item.price }} руб.</div>
+            <div class="item-color"> Цвет: {{ item.color }}</div>
+            <input type="button" @click="removeButton" class="button-remove" value="Удалить из корзины"/>
+        </div>
+    `,
+    props: ['item'],
+    methods: {
+        removeButton() {
+            this.$emit('remove-click', this.item);
+        }
+    }
 })
 
 new Vue({
     el: '#app',
     data: {
         items: [],
-        filtered: [],
+        checkedFilters: {},
+        isSorted: false,
+        filtered: {},
         curCategory: 'Все',
         categories: 'Все ',
-        categoryFilter: false,
+        categoryFilter: {},
+        showOrderList: false,
+        orderList: []
     },
     created() {
+        this.curCategory = localStorage.curCategory ? localStorage.curCategory : 'Все';
+        this.filtered = localStorage.filtered ? JSON.parse(localStorage.filtered) : {};
+        this.checkedFilters = localStorage.checkedFilters ? JSON.parse(localStorage.checkedFilters) : {};
+        this.orderList = localStorage.orderList ? JSON.parse(localStorage.orderList) : [];
+
+        console.log(this.checkedFilters);
+        console.log(this.orderList)
+
         this.loadItems();
+        if (this.curCategory != 'Все') this.changeCategory(this.curCategory);
+
+        this.filterItems();
     },
     methods: {
         loadItems() {
@@ -84,7 +82,7 @@ new Vue({
                 this.items = res.data;
             }).then(() => {
                 this.categoryFilter = false,
-                this.categories = 'Все ';
+                    this.categories = 'Все ';
                 this.items.forEach(item => {
                     if (this.categories.indexOf(item.category) == -1) {
                         this.categories += item.category + ' ';
@@ -94,6 +92,7 @@ new Vue({
             });
         },
         filterItems() {
+            if (!Object.keys(this.filtered).length || this.curCategory == 'Все') return;
             var query = `http://localhost:8080/data?category=${this.curCategory}`;
             for (var key in this.filtered) {
                 query += '&' + key + '=' + this.filtered[key];
@@ -101,6 +100,7 @@ new Vue({
             axios.get(query).then(res => this.items = res.data);
         },
         changeCategory(category) {
+            localStorage.curCategory = category;
             if (category == 'Все') {
                 this.loadItems();
             } else {
@@ -129,14 +129,70 @@ new Vue({
                 }
             })
         },
-        addYear(event) {
+        addFilter(event) {
             if (event.target.checked) {
                 this.filtered[event.target.name].push(event.target.id);
+                this.checkedFilters[event.target.id] = true;
             } else {
                 this.filtered[event.target.name] = this.filtered[event.target.name].filter(filter => filter != event.target.id);
+                this.checkedFilters[event.target.id] = false;
             }
+
+            localStorage.checkedFilters = JSON.stringify(this.checkedFilters);
+            localStorage.filtered = JSON.stringify(this.filtered);
+
             this.filterItems();
-            console.log(this.filtered);
+        },
+        sortItems(field) {
+            if (this.isSorted == field) {
+                if (this.isSorted == 'title') {
+                    this.items = this.items
+                        .sort((a, b) => a[this.isSorted] < b[this.isSorted] ? 1 : - 1);
+                    this.isSorted = false;
+                    return;
+                } else {
+                    if (this.items[0][field]) {
+                        this.items = this.items
+                            .sort((a, b) => Number(a[this.isSorted]) < Number(b[this.isSorted]) ? 1 : - 1);
+                    } else {
+                        this.items = this.items
+                            .sort((a, b) => Number(a.props[this.isSorted]) < Number(b.props[this.isSorted]) ? 1 : - 1);
+                    }
+                }
+                this.isSorted = false;
+                return;
+            }
+            if (field == 'title') {
+                this.items = this.items.sort((a, b) => a[field] > b[field] ? 1 : - 1);
+                this.isSorted = 'title';
+                return;
+            }
+            if (this.items[0][field]) {
+                this.items = this.items.sort((a, b) => Number(a[field]) > Number(b[field]) ? 1 : - 1);
+            } else {
+                this.items = this.items.sort((a, b) => Number(a.props[field]) > Number(b.props[field]) ? 1 : - 1);
+            }
+            this.isSorted = field;
+        },
+        showCart() {
+            this.showOrderList == false ? (this.showOrderList = true) : (this.showOrderList = false);
+        },
+        addToCart(item) {
+            var itemInCart = new Object;
+            itemInCart.title = item.title;
+            itemInCart.img = item.img;
+            itemInCart.price = item.price;
+            itemInCart.color = item.props.Цвет;
+
+            this.orderList.push(itemInCart);
+            localStorage.orderList = JSON.stringify(this.orderList);
+        },
+        removeItem(item) {
+            var title = item.title;
+            var color = item.color;
+            const index = this.orderList.findIndex(item => item.title == title && item.color == color)
+            this.orderList.splice(index, 1);
+            localStorage.orderList = JSON.stringify(this.orderList);
         }
     }
 })

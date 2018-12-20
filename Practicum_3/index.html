@@ -9,38 +9,44 @@
     <link rel="stylesheet" href="./main.css">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/ionicons@4.5.0/dist/ionicons.js"></script>
 </head>
 
 <body>
     <div id="app">
-        <div class="items-container">
+        <div class="categories-container">
             <app-category v-for="cat in categories" :category="cat" @category-click="changeCategory"></app-category>
-            <!-- <app-filter v-if="categoryFilter" @filtered='filterItems' :filter="categoryFilter"></app-filter> -->
+
+            <input type="button" value="Cart" class="cart" @click="showCart"/>
+            <div class="order-list" v-if="showOrderList">
+                <app-cart-item v-for="item in orderList" :item="item" @remove-click="removeItem"></app-cart-item>
+            </div>
+
+
             <div class="app-filter" v-if="categoryFilter">
-                <div v-for="(filters, key) in categoryFilter">
-                    <span>{{ key }}</span>
-                    <span v-for="filter in filters"> 
-                        <input type="checkbox" :id="filter" :name="key" @input="addYear" />
+                <div class="app-filters" v-for="(filters, key) in categoryFilter">
+                    <span class="filter-key">{{ key }}</span>
+                    <span class="filter" v-for="filter in filters">
+                        <input type="checkbox" :id="filter" :name="key" v-model="checkedFilters[filter]" @input="addFilter" />
                         <label :for="filter">{{ filter }}</label>
                     </span>
                 </div>
-                <!-- <div class="filter-item">Год выпуска:
-                    <div>
-                        <input type="checkbox" id="2016" name="year" @input="addYear" />
-                        <label for="2016">2016</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="2017" name="year" @input="addYear" />
-                        <label for="2017">2017</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="2018" name="year" @input="addYear" />
-                        <label for="2018">2018</label>
-                    </div> -->
-                </div>
             </div>
-            <app-item v-for="item in items" :item="item"></app-item>
+
+            <div class="app-sort">
+                <h3>Сортировать по:</h3>
+                <span class="sort-btn" @click="sortItems('title')">НАЗВАНИЮ</span>
+                <span class="sort-btn" @click="sortItems('price')">ЦЕНЕ</span>
+                <span class="sort-btn" @click="sortItems('Год выпуска')">ГОДУ ВЫПУСКА</span>
+                <span class="sort-btn" @click="sortItems('ОП')">ОПЕРАТИВНОЙ ПАМЯТИ</span>
+            </div>
+
         </div>
+
+        <div class="items-container">
+            <app-item v-for="item in items" :item="item" @button-click="addToCart"></app-item>
+        </div>
+    </div>
     </div>
     <script type="text/javascript" src="./main.js"></script>
 </body>
